@@ -33,17 +33,15 @@ public class SceneManagerController : MonoBehaviour
 
     private void Start() {
         imageColor = foreground.color;
-        StartCoroutine(FadeCoroutine(fadeOutTime, fadeOutColor));
+        CallFadeOut();
+        //StartCoroutine(FadeCoroutine(fadeOutTime, fadeOutColor));
     }
     
     public void LoadScene(string newSceneName){
         scenNameToLoad = newSceneName;
         onFade = CallLoadScene;
-        CallFadeOut();
         onLoadScene = CallFadeOut;
         CallFadeIn();
-        onLoadScene = CallFadeIn;
-        
     }
 
     private void CallFadeOut(){
@@ -66,10 +64,10 @@ public class SceneManagerController : MonoBehaviour
             float t = totalTime / targetTime;
 
             yield return new WaitForSeconds(Time.deltaTime);
-
             foreground.color = Color.Lerp(imageColor, targetColor, t);
+            
         }
-        
+        imageColor=targetColor;
         onFade?.Invoke();
     }
 
