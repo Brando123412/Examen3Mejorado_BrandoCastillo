@@ -32,7 +32,7 @@ public class SceneManagerController : MonoBehaviour
     }
 
     private void Start() {
-        imageColor = foreground.color;
+            imageColor = foreground.color;
         CallFadeOut();
         //StartCoroutine(FadeCoroutine(fadeOutTime, fadeOutColor));
     }
